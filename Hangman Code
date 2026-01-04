@@ -1,0 +1,87 @@
+import random
+print(r"""  _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/                                     
+""")
+choices = ['ant','baboon']
+stages = ["""+---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========""",
+"""+---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========""",
+"""+---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========""",
+"""+---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========""",
+"""+---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========""",
+"""+---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========""",
+"""+---+
+  |   |
+      |
+      |
+      |
+      |
+========="""]
+display = []
+lives = 6
+chosen_word = random.choice(choices)
+word_length = len(chosen_word)
+for letter in chosen_word:
+    display += "_"
+
+while "_" in display and lives > 0:
+    print(stages[lives])
+    guess = input(f"Guess a letter: {display}").lower()
+
+    if guess in display:
+        print(f"You already guessed {guess}!")
+    if guess in chosen_word:
+        for position in range(word_length):
+            if chosen_word[position] == guess:
+                display[position] = guess
+    else:
+        print("Incorrect Guess! YOU'VE LOST A LIFE!")
+        lives -= 1
+
+if "_" not in display:
+    print(f"CONGRATULATIONS! You guessed the word: {chosen_word}")
+    print(stages[lives])
+else:
+    print(f"GAME OVER! ,You ran out of lives! The word was: {chosen_word}")
+    print(stages[lives])
