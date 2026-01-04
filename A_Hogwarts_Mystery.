@@ -1,0 +1,35 @@
+print(r"""     ___                             | '  \
+   ___  \ /  ___         ,'\_           | .-. \        /|
+   \ /  | |,'__ \  ,'\_  |   \          | | | |      ,' |_   /|
+ _ | |  | |\/  \ \ |   \ | |\_|    _    | |_| |   _ '-. .-',' |_   _
+// | |  | |____| | | |\_|| |__    //    |     | ,'_`. | | '-. .-',' `. ,'\_
+\\_| |_,' .-, _  | | |   | |\ \  //    .| |\_/ | / \ || |   | | / |\  \|   \
+ `-. .-'| |/ / | | | |   | | \ \//     |  |    | | | || |   | | | |_\ || |\_|
+   | |  | || \_| | | |   /_\  \ /      | |`    | | | || |   | | | .---'| |
+   | |  | |\___,_\ /_\ _      //       | |     | \_/ || |   | | | |  /\| |
+   /_\  | |           //_____//       .||`      `._,' | |   | | \ `-' /| |
+        /_\           `------'        \ |   AND        `.\  | |  `._,' /_\
+                                       \|       THE  
+                                             HOGWARTS 
+                                               MYSTERY
+
+""")
+
+print("You have been selected to practice witchcraft and Hogwarts School of Witchcraft and Wizardry")
+first_choice = input(
+    "You have arrived at platform 9 and 3 quarters, choose a form of transport, the weasleys flying car or the Hogwarts express? type 'flying car' or 'Hogwarts express':\n").lower()
+if first_choice == "hogwarts express":
+    second_choice = input(
+        "You have boarded the hogwarts express and have met ron and hermione, would you like to be friends with them or the infamous draco malfoy? type 'ron and hermione' or 'draco':\n").lower()
+    if second_choice == "ron and hermione":
+        third_choice = input(
+            "You have arrived at hogwarts and are seated at the sorting hat, you must now choose a house, type either 'gryffindor' 'slytherin' 'hufflepuff' or 'ravenclaw':\n").lower()
+        if third_choice == "gryffindor":
+            print("You have made the right choices, CONGRATULATIONS!")
+        else:
+            print("You are a super outcast and will have a terrible time here")
+    else:
+        print(
+            "Malfoy and his cronies have laughed at you as they are children of death eaters and you are now a outcast at hogwarts. Game Over!")
+else:
+    print("You have been spotted by muggles as the invisibility charm has run out on the car, Game Over!")
