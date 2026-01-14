@@ -1,0 +1,64 @@
+print("""
+ _____________________
+|  _________________  |
+| |PYTHONS       0. | |
+| |_________________| |
+|  ___ ___ ___   ___  |
+| | 7 | 8 | 9 | | + | |
+| |___|___|___| |___| |
+| | 4 | 5 | 6 | | - | |
+| |___|___|___| |___| |
+| | 1 | 2 | 3 | | x | |
+| |___|___|___| |___| |
+| | . | 0 | = | | / | |
+| |___|___|___| |___| |
+|_____________________|""")
+
+
+def add(n1, n2):
+    return n1 + n2
+
+
+def subtract(n1, n2):
+    return n1 - n2
+
+
+def multiply(n1, n2):
+    return n1 * n2
+
+
+def divide(n1, n2):
+    return n1 / n2
+
+
+calculator_functions = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide
+}
+
+
+def calculator():
+    still_calculating = True
+    first_num = int(input("Enter a number:\n"))
+    while still_calculating:
+        for operations in calculator_functions:
+            print(operations)
+        operation = input("Pick and operation from above: \n")
+        next_num = int(input("Enter a number:\n"))
+        result = (calculator_functions[operation](first_num, next_num))
+        print(f"{first_num} {operation} {next_num} = {result}")
+        keep_calculating = input("Would you like to continue calculating? Type 'yes' or 'no':\n").lower()
+        if keep_calculating == 'yes':
+            first_num = result
+        elif keep_calculating not in ["yes", "no"]:
+            print("Invalid option, program will end.")
+            break
+        else:
+            print("Thanks, Goodbye.")
+            still_calculating = False
+
+
+calculator()
+
