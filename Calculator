@@ -41,12 +41,12 @@ calculator_functions = {
 
 def calculator():
     still_calculating = True
-    first_num = int(input("Enter a number:\n"))
+    first_num =float(input("Enter a number:\n"))
     while still_calculating:
         for operations in calculator_functions:
             print(operations)
         operation = input("Pick and operation from above: \n")
-        next_num = int(input("Enter a number:\n"))
+        next_num = float(input("Enter a number:\n"))
         result = (calculator_functions[operation](first_num, next_num))
         print(f"{first_num} {operation} {next_num} = {result}")
         keep_calculating = input("Would you like to continue calculating? Type 'yes' or 'no':\n").lower()
