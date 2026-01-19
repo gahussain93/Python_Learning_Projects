@@ -1,0 +1,106 @@
+import random
+
+
+def deal_card(user, deck):
+    random_card = random.choice(deck)
+    user.append(random_card)
+    deck.remove(random_card)
+
+
+def check_for_blackjack(player, dealer):
+    player_total = calculate_hand_total(player)
+    dealer_total = calculate_hand_total(dealer)
+    if player_total == 21 and dealer_total == 21:
+        print("It's a draw you both got a BlackJack!")
+        return True
+    elif calculate_hand_total(player) == 21:
+        print("Player has BlackJack! Congratulations.")
+        print(f"Players cards: {player}")
+        return True
+    elif calculate_hand_total(dealer) == 21:
+        print("Dealer has Blackjack!")
+        print(f"Dealers cards: {dealer}")
+        return True
+    return False
+
+
+def calculate_hand_total(hand):
+    total = sum(hand)
+    aces = hand.count(11)
+    while total > 21 and aces > 0:
+        total -= 10
+        aces -= 1
+    return total
+
+
+def dealer_turn(dealer, card_deck):
+    while calculate_hand_total(dealer) < 17:
+        deal_card(dealer, card_deck)
+
+
+def find_winner(player, dealer):
+    player_total = calculate_hand_total(player)
+    dealer_total = calculate_hand_total(dealer)
+    if player_total == dealer_total:
+        print("It's a draw!")
+    elif player_total > dealer_total:
+        print("Player wins with a higher hand!")
+    elif dealer_total > player_total:
+        print("Dealer wins with a higher hand!")
+
+
+def check_for_bust(hand, owner, other_player):
+    if calculate_hand_total(hand) > 21:
+        print(f"{owner} busts!")
+        print(f"{other_player} wins!")
+        return True
+    return False
+
+
+def hit_or_stand():
+    choice = input("Would you like another card? Type 'yes' or 'no':\n").lower()
+    return choice == "yes"
+
+
+def deal_first_cards(hand, card_deck):
+    card = random.choice(card_deck)
+    hand.append(card)
+    card_deck.remove(card)
+
+
+def blackjack_game():
+    deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11]
+    user_cards = []
+    dealer_cards = []
+    start_game = input("Do you want to play a game of BlackJack? Enter 'yes' or 'no':\n").lower()
+    if start_game not in ["yes", "no"]:
+        print("You've entered an invalid option, Goodbye.")
+    elif start_game == "no":
+        print("No problem, see ya!")
+    else:
+        for times in range(2):
+            deal_first_cards(user_cards, deck)
+            deal_first_cards(dealer_cards, deck)
+        if check_for_blackjack(user_cards, dealer_cards):
+            return
+        print(f"Players cards: {user_cards}")
+        print(f"Dealers cards: {dealer_cards[0]}")
+        while hit_or_stand():
+            deal_card(user_cards, deck)
+            calculate_hand_total(user_cards)
+            print(f"Players cards: {user_cards}")
+            if check_for_bust(user_cards, "Player", "Dealer"):
+                return
+        dealer_turn(dealer_cards, deck)
+        calculate_hand_total(dealer_cards)
+        if check_for_bust(dealer_cards, "Dealer", "Player"):
+            return
+        print(f"Dealers cards: {dealer_cards}")
+        find_winner(user_cards, dealer_cards)
+
+
+blackjack_game()
+
+
+
+
