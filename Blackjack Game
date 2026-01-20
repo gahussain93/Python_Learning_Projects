@@ -62,12 +62,6 @@ def hit_or_stand():
     return choice == "yes"
 
 
-def deal_first_cards(hand, card_deck):
-    card = random.choice(card_deck)
-    hand.append(card)
-    card_deck.remove(card)
-
-
 def blackjack_game():
     deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
     user_cards = []
@@ -79,8 +73,8 @@ def blackjack_game():
         print("No problem, see ya!")
     else:
         for times in range(2):
-            deal_first_cards(user_cards, deck)
-            deal_first_cards(dealer_cards, deck)
+            user_cards.append(deal_card)
+            dealer_cards.append(deal_card)
         if check_for_blackjack(user_cards, dealer_cards):
             return
         print(f"Players cards: {user_cards}")
