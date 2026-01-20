@@ -69,7 +69,7 @@ def deal_first_cards(hand, card_deck):
 
 
 def blackjack_game():
-    deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11]
+    deck = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
     user_cards = []
     dealer_cards = []
     start_game = input("Do you want to play a game of BlackJack? Enter 'yes' or 'no':\n").lower()
