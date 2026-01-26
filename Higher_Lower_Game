@@ -1,0 +1,129 @@
+import random
+logo = (r"""____  _  _  ____                                               
+(_  _)/ )( \(  __)                                              
+  )(  ) __ ( ) _)                                               
+ (__) \_)(_/(____)                                              
+ _  _  __  ___  _  _  ____  ____           __  ____             
+/ )( \(  )/ __)/ )( \(  __)(  _ \         /  \(  _ \            
+) __ ( )(( (_ \) __ ( ) _)  )   /        (  O ))   /            
+\_)(_/(__)\___/\_)(_/(____)(__\_)         \__/(__\_)            
+ __     __   _  _  ____  ____             ___   __   _  _  ____ 
+(  )   /  \ / )( \(  __)(  _ \           / __) / _\ ( \/ )(  __)
+/ (_/\(  O )\ /\ / ) _)  )   /          ( (_ \/    \/ \/ \ ) _) 
+\____/ \__/ (_/\_)(____)(__\_)           \___/\_/\_/\_)(_/(____)
+""")
+vs = (r"""___    ___
+\   \ /   /   _____/
+ \   Y   /\_____  \ 
+  \     / /        \
+   \___/ /_______  /
+                 \/ """)
+Celebrities = [
+    {
+        "Name": "Instagram",
+        "Follower Count": 346,
+        "Description": "A Social Media Platform",
+        "Country": "United States"
+    },
+    {
+        "Name": "Cristiano Ronaldo",
+        "Follower Count": 617,
+        "Description": "Professional Footballer",
+        "Country": "Portugal"
+    },
+    {
+        "Name": "Lionel Messi",
+        "Follower Count": 497,
+        "Description": "Professional Footballer",
+        "Country": "Argentina"
+    },
+    {
+        "Name": "Selena Gomez",
+        "Follower Count": 430,
+        "Description": "Musician and Actress",
+        "Country": "United States"
+    },
+    {
+        "Name": "Kylie Jenner",
+        "Follower Count": 399,
+        "Description": "Reality TV Star and Entrepreneur",
+        "Country": "United States"
+    },
+    {
+        "Name": "Dwayne Johnson",
+        "Follower Count": 389,
+        "Description": "Actor and Professional Wrestler",
+        "Country": "United States"
+    },
+    {
+        "Name": "Ariana Grande",
+        "Follower Count": 376,
+        "Description": "Musician and Actress",
+        "Country": "United States"
+    },
+    {
+        "Name": "Kim Kardashian",
+        "Follower Count": 364,
+        "Description": "Reality TV Star and Entrepreneur",
+        "Country": "United States"
+    },
+    {
+        "Name": "Beyoncé",
+        "Follower Count": 319,
+        "Description": "Musician",
+        "Country": "United States"
+    },
+    {
+        "Name": "Taylor Swift",
+        "Follower Count": 283,
+        "Description": "Musician",
+        "Country": "United States"
+    }
+]
+
+
+def get_random_celeb(exclude=None):
+    celeb = random.choice(Celebrities)
+    while celeb == exclude:
+        celeb = random.choice(Celebrities)
+    return celeb
+
+
+def higher_lower_game():
+    print(logo)
+    score = 0
+    game_on = True
+    a = get_random_celeb()
+    b = get_random_celeb(exclude=a)
+    while game_on:
+        a_followers = a["Follower Count"]
+        b_followers = b["Follower Count"]
+
+        print(f"Compare A: {a['Name']}, {a['Description']}, from {a['Country']}.")
+        print(vs)
+        print(f"Against B: {b['Name']}, {b['Description']}, from {b['Country']}.")
+
+        guess = input("Who has more followers, A or B:\n").lower()
+
+        if guess != "a" and guess != "b":
+            print("You must enter either 'A' or 'B'!")
+            guess = input("Who has more followers, A or B:\n").lower()
+        if guess == "a" and a_followers > b_followers:
+            score += 1
+            print("CORRECT")
+            print(f"Current score is {score}")
+            b = get_random_celeb(exclude=a)
+        elif guess == "b" and b_followers > a_followers:
+            score += 1
+            print("CORRECT")
+            print(f"Your current score is {score}")
+            a = b
+            b = get_random_celeb(exclude=a)
+
+        else:
+            print("WRONG!")
+            print(f"You guessed right {score} times.")
+            break
+
+
+higher_lower_game()
