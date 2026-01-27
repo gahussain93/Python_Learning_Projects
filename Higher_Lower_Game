@@ -82,6 +82,13 @@ Celebrities = [
 ]
 
 
+def format_data(account):
+    name = account["Name"]
+    descr = account["Description"]
+    country = account["Country"]
+    return f"{account['Name']}, {account['Description']}, from {account['Country']}."
+
+
 def get_random_celeb(exclude=None):
     celeb = random.choice(Celebrities)
     while celeb == exclude:
@@ -99,9 +106,9 @@ def higher_lower_game():
         a_followers = a["Follower Count"]
         b_followers = b["Follower Count"]
 
-        print(f"Compare A: {a['Name']}, {a['Description']}, from {a['Country']}.")
+        print(f"Compare A: {format_data(a)}")
         print(vs)
-        print(f"Against B: {b['Name']}, {b['Description']}, from {b['Country']}.")
+        print(f"Against B: {format_data(b)}")
 
         guess = input("Who has more followers, A or B:\n").lower()
 
